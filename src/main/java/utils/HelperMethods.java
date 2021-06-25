@@ -33,6 +33,10 @@ public class HelperMethods extends Base {
         WebDriverWait webDriverWait = new WebDriverWait(webDriver, seconds);
         webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
     }
+    public void waitForWebElementToBeInteractable(WebElement webElement, long seconds) {
+        WebDriverWait webDriverWait = new WebDriverWait(webDriver, seconds);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
 
     /*
     Method to wait for page to load completely

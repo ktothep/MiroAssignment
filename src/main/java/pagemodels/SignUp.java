@@ -117,6 +117,7 @@ public class SignUp extends Base {
      */
     public String ssoGoogle() {
         this.scrollBy(signupGoogle);
+        helperMethods.waitForWebElementToBeInteractable(signupGoogle,30);
         signupGoogle.click();
         ssoSubscribeCheck.click();
         ssoTermsCheck.click();
@@ -132,10 +133,12 @@ public class SignUp extends Base {
      */
     public String ssoSlack() {
         this.scrollBy(signupSlack);
+        helperMethods.waitForWebElementToBeInteractable(signupSlack,30);
         signupSlack.click();
         ssoSubscribeCheck.click();
         ssoTermsCheck.click();
         submitSSO.click();
+
         while (!helperMethods.waitForPageToLoad()) {
             helperMethods.waitForPageToLoad();
         }
@@ -147,6 +150,8 @@ public class SignUp extends Base {
      */
     public String ssoOffice() {
         this.scrollBy(signupOutlook);
+        helperMethods.waitForWebElementToBeInteractable(signupOutlook,30);
+
         signupOutlook.click();
         ssoSubscribeCheck.click();
         ssoTermsCheck.click();
@@ -162,6 +167,8 @@ public class SignUp extends Base {
      */
     public String ssoApple() {
         this.scrollBy(signupApple);
+        helperMethods.waitForWebElementToBeInteractable(signupApple,30);
+
         signupApple.click();
         ssoSubscribeCheck.click();
         ssoTermsCheck.click();
@@ -177,6 +184,8 @@ public class SignUp extends Base {
      */
     public String ssoFacebook() {
         this.scrollBy(signupFacebook);
+        helperMethods.waitForWebElementToBeInteractable(signupFacebook,30);
+
         signupFacebook.click();
         ssoSubscribeCheck.click();
         ssoTermsCheck.click();
