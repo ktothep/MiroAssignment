@@ -47,24 +47,7 @@ public class TC_03_Test_SSO_Facebook {
 
     }
 
-    @Test
-    public void facebookSSOTest() throws InterruptedException {
-        try {
-            log.info("Validating all the elements on SignUp Page are present");
-            Assert.assertTrue(signUp.validatePageElements());
-            extentLogger.log(LogStatus.PASS, "Sign Up Page is validated");
 
-        } catch (TimeoutException timeoutException) {
-            log.error("Element is not present.Check for change in xpath or if Page is loaded: " + timeoutException.getLocalizedMessage());
-            extentLogger.log(LogStatus.FAIL, "Element is missing " + timeoutException.getLocalizedMessage());
-            Assert.fail("Test has failed");
-        } catch (Exception exception) {
-            log.error("Something went wrong.Please check code.:" + exception.getLocalizedMessage());
-            extentLogger.log(LogStatus.FAIL, "Error Occurred" + exception.getLocalizedMessage());
-            Assert.fail("Test has failed");
-        }
-
-    }
 
     @Test
     public void verifyTitle() {
