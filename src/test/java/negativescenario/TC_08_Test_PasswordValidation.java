@@ -56,28 +56,15 @@ public class TC_08_Test_PasswordValidation extends Base {
 
     }
 
-    @Test()
-    public void emptyPasswordTest() {
+
+
+    @Test(dataProvider = "dataProvider", dataProviderClass = DataMethods.class)
+    public void passwordTestLessThan8(String userName, String password, String eMail) {
         try {
             log.info("Validating if message is shown if Password field is empty");
             String emptyPasswordMessage = signUp.passwordEmptyValidation();
             Assert.assertEquals(emptyPasswordMessage, "Please enter your password.");
             extentLogger.log(LogStatus.PASS, "Message for Empty password validated successfully: " + emptyPasswordMessage);
-
-        } catch (TimeoutException timeoutException) {
-            log.error("Element is not present.Check for change in xpath or if Page is loaded: " + timeoutException.getLocalizedMessage());
-            extentLogger.log(LogStatus.FAIL, "Element is missing " + timeoutException.getLocalizedMessage());
-            Assert.fail("Test has failed");
-        } catch (Exception exception) {
-            log.error("Something went wrong.Please check code.: " + exception.getLocalizedMessage());
-            extentLogger.log(LogStatus.FAIL, "Error Occurred" + exception.getLocalizedMessage());
-            Assert.fail("Test has failed");
-        }
-    }
-
-    @Test(dataProvider = "dataProvider", dataProviderClass = DataMethods.class)
-    public void passwordTestLessThan8(String userName, String password, String eMail) {
-        try {
             log.info("Validating if message is shown if Password field lenght is less than 8 characters");
             String passwordLengthMessage = signUp.passwordLengthValidation(userName, password, eMail);
             Assert.assertEquals(passwordLengthMessage, "Please use 8+ characters for secure password");

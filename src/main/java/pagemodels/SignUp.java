@@ -44,7 +44,7 @@ public class SignUp extends Base {
     @FindBy(xpath = ".//div[@data-soc='google']")
     WebElement signupGoogle;
 
-    @FindBy(xpath = "..//div[@data-soc='slack']")
+    @FindBy(xpath = ".//div[@data-soc='slack']")
     WebElement signupSlack;
 
     @FindBy(xpath = ".//div[@data-soc='office365']")
@@ -56,7 +56,7 @@ public class SignUp extends Base {
     @FindBy(xpath = ".//div[@data-soc='facebook']")
     WebElement signupFacebook;
 
-    @FindBy(xpath = ".//div[contains(@class,'socialtos__btn js')]")
+    @FindBy(xpath = ".//div[@role='button']/child::span")
     WebElement submitSSO;
 
     @FindBy(xpath = ".//a[@title='Miro Logo']")
@@ -118,7 +118,7 @@ public class SignUp extends Base {
     /*
     Method for checking SSO functionality using Gmail
      */
-    public String ssoGoogle() {
+    public String ssoGoogle() throws InterruptedException {
         this.scrollBy(signupGoogle);
         helperMethods.waitForWebElementToBeInteractable(signupGoogle,30);
         signupGoogle.click();
@@ -128,13 +128,15 @@ public class SignUp extends Base {
         while (!helperMethods.waitForPageToLoad()) {
             helperMethods.waitForPageToLoad();
         }
+        //Since we are navigating to third party adding thread.sleep
+        Thread.sleep(5000);
         return webDriver.getTitle();
     }
 
     /*
     Method for checking SSO functionality using Slack
      */
-    public String ssoSlack() {
+    public String ssoSlack() throws InterruptedException {
         while (!helperMethods.waitForPageToLoad()) {
             helperMethods.waitForPageToLoad();
         }
@@ -148,13 +150,15 @@ public class SignUp extends Base {
         while (!helperMethods.waitForPageToLoad()) {
             helperMethods.waitForPageToLoad();
         }
+        //Since we are navigating to third party adding thread.sleep
+        Thread.sleep(5000);
         return webDriver.getTitle();
     }
 
     /*
     Method for checking SSO functionality using Office
      */
-    public String ssoOffice() {
+    public String ssoOffice() throws InterruptedException {
         this.scrollBy(signupOutlook);
         helperMethods.waitForWebElementToBeInteractable(signupOutlook,30);
 
@@ -165,16 +169,17 @@ public class SignUp extends Base {
         while (!helperMethods.waitForPageToLoad()) {
             helperMethods.waitForPageToLoad();
         }
+        //Since we are navigating to third party adding thread.sleep
+        Thread.sleep(5000);
         return webDriver.getTitle();
     }
 
     /*
     Method for checking SSO functionality using Apple
      */
-    public String ssoApple() {
+    public String ssoApple() throws InterruptedException {
         this.scrollBy(signupApple);
         helperMethods.waitForWebElementToBeInteractable(signupApple,30);
-
         signupApple.click();
         ssoSubscribeCheck.click();
         ssoTermsCheck.click();
@@ -182,13 +187,15 @@ public class SignUp extends Base {
         while (!helperMethods.waitForPageToLoad()) {
             helperMethods.waitForPageToLoad();
         }
+        //Since we are navigating to third party adding thread.sleep
+        Thread.sleep(5000);
         return webDriver.getTitle();
     }
 
     /*
     Method for checking SSO functionality using Facebook
      */
-    public String ssoFacebook() {
+    public String ssoFacebook() throws InterruptedException {
         this.scrollBy(signupFacebook);
         helperMethods.waitForWebElementToBeInteractable(signupFacebook,30);
 
@@ -199,6 +206,8 @@ public class SignUp extends Base {
         while (!helperMethods.waitForPageToLoad()) {
             helperMethods.waitForPageToLoad();
         }
+        //Since we are navigating to third party adding thread.sleep
+        Thread.sleep(5000);
         return webDriver.getTitle();
     }
 
@@ -231,6 +240,9 @@ public class SignUp extends Base {
      */
     public String passwordEmptyValidation() {
         this.scrollBy(email);
+        name.clear();
+        email.clear();
+        password.clear();
         submit.click();
         helperMethods.waitForWebElement(emptyPassword, 30);
         return emptyPassword.getText();

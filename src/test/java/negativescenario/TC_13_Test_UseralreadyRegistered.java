@@ -56,8 +56,6 @@ public class TC_13_Test_UseralreadyRegistered {
             log.info("Opening URL");
             extentLogger.log(LogStatus.PASS, "URL opened successfully");
             Base.maximise();
-            log.info("Validating all the elements on SignUp Page are present");
-            Assert.assertTrue(signUp.validatePageElements());
             extentLogger.log(LogStatus.PASS, "Sign Up Page is validated");
             log.info("Entering Credentials for Sign Up");
             log.info("Entering Username: " + userName);
