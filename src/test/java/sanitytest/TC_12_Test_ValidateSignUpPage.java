@@ -13,7 +13,9 @@ import org.testng.annotations.Test;
 import pagemodels.SignUp;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 
 /*This test is for validating Sign Up Page*/
@@ -32,7 +34,7 @@ public class TC_12_Test_ValidateSignUpPage {
         Base.initialise(Base.getBrowser());
         signUp = new SignUp();
         log.info("Fetching URL");
-        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_12_Test_ValidateSignUpPage.class.getName() + "_" + LocalDateTime.now(ZoneId.systemDefault()) + "_" + ".html", true);
+        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_12_Test_ValidateSignUpPage.class.getName() + "_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
         extentLogger = extentReports.startTest("Validate Sign Up Page ");
         Base.getURL(Base.getURL());
         extentLogger.log(LogStatus.PASS, "URL opened successfully");

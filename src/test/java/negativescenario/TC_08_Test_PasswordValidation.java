@@ -16,7 +16,9 @@ import pagemodels.SignUp;
 import utils.DataMethods;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.concurrent.TimeUnit;
 
@@ -43,7 +45,7 @@ public class TC_08_Test_PasswordValidation extends Base {
         Base.initialise(Base.getBrowser());
         signUp = new SignUp();
         log.info("Fetching URL");
-        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_08_Test_PasswordValidation.class.getName() + "_" + LocalDateTime.now(ZoneId.systemDefault()) + "_" + ".html", true);
+        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_08_Test_PasswordValidation.class.getName() +"_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
         extentLogger = extentReports.startTest("Verify Password Validation Check");
         Base.getURL(Base.getURL());
         extentLogger.log(LogStatus.PASS, "URL opened successfully");

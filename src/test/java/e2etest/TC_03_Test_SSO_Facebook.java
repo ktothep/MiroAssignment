@@ -14,7 +14,9 @@ import pagemodels.SignUp;
 import pagemodels.SuccessfulRegistration;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 
 /*This test is for checking if user is able to SSO using Facebook.*/
@@ -37,7 +39,7 @@ public class TC_03_Test_SSO_Facebook {
         signUp = new SignUp();
         successfulRegistration = new SuccessfulRegistration();
         log.info("Fetching URL");
-        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_03_Test_SSO_Facebook.class.getName() + "_" + LocalDateTime.now(ZoneId.systemDefault()) + "_" + ".html", true);
+        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_03_Test_SSO_Facebook.class.getName() + "_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
         extentLogger = extentReports.startTest("Verify if user is able to SSO using Facebook");
         Base.getURL(Base.getURL());
         extentLogger.log(LogStatus.PASS, "URL opened successfully");

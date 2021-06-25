@@ -14,7 +14,9 @@ import pagemodels.HomePage;
 import pagemodels.SignUp;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.concurrent.TimeUnit;
 
@@ -39,7 +41,7 @@ public class TC_10_Test_ValidateHomeLink extends Base {
         signUp = new SignUp();
         homePage = new HomePage();
         log.info("Fetching URL");
-        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_10_Test_ValidateHomeLink.class.getName() + "_" + LocalDateTime.now(ZoneId.systemDefault()) + "_" + ".html", true);
+        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_10_Test_ValidateHomeLink.class.getName() + "_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
 
         extentLogger = extentReports.startTest("Validate link for Home Page");
         Base.getURL(Base.getURL());

@@ -14,7 +14,9 @@ import pagemodels.SignIn;
 import pagemodels.SignUp;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.concurrent.TimeUnit;
 
@@ -39,7 +41,7 @@ public class TC_11_Test_ValidateSignIn extends Base {
         signUp = new SignUp();
         signIn = new SignIn();
         log.info("Fetching URL");
-        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_11_Test_ValidateSignIn.class.getName() + "_" + LocalDateTime.now(ZoneId.systemDefault()) + "_" + ".html", true);
+        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_11_Test_ValidateSignIn.class.getName() +"_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
         extentLogger = extentReports.startTest("Validate Sign in Page Link");
         Base.getURL(Base.getURL());
         extentLogger.log(LogStatus.PASS, "URL opened successfully");

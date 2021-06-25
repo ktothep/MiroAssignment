@@ -14,7 +14,9 @@ import pagemodels.SignUp;
 import pagemodels.SuccessfulRegistration;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 
 /*This test is for checking if user is able to SSO using Google.*/
@@ -37,7 +39,7 @@ public class TC_04_Test_SSO_Google {
         signUp = new SignUp();
         successfulRegistration = new SuccessfulRegistration();
         log.info("Fetching URL");
-        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_04_Test_SSO_Google.class.getName() + "_" + LocalDateTime.now(ZoneId.systemDefault()) + "_" + ".html", true);
+        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_04_Test_SSO_Google.class.getName() + "_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
         extentLogger = extentReports.startTest("Verify if user is able to SSO using Google");
         Base.getURL(Base.getURL());
         extentLogger.log(LogStatus.PASS, "URL opened successfully");
@@ -65,9 +67,15 @@ public class TC_04_Test_SSO_Google {
     public void verifyTitle() {
         try {
             log.info("Clicking on google SSO link and Validating the Page title to hceck for redirection");
-            Assert.assertEquals(signUp.ssoGoogle(), "Sign in – Google accounts");
-            log.info("Title of the Page: " + Base.getTitle());
-            extentLogger.log(LogStatus.PASS, "Title of the Page is validated : " + Base.getTitle());
+             String googleTitle= signUp.ssoGoogle();
+             if(googleTitle.contains("Sign in")) {
+                 log.info("Title of the Page: " + Base.getTitle());
+                 extentLogger.log(LogStatus.PASS, "Title of the Page is validated : " + Base.getTitle());
+             }
+             else
+             {
+                 throw new Exception();
+             }
 
 
         } catch (TimeoutException timeoutException) {

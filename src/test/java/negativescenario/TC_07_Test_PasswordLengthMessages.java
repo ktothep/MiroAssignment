@@ -13,7 +13,9 @@ import org.testng.annotations.Test;
 import pagemodels.SignUp;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class TC_07_Test_PasswordLengthMessages {
         log.info("Fetching URL");
         Base.getURL(Base.getURL());
         Base.maximise();
-        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_07_Test_PasswordLengthMessages.class.getName() + "_" + LocalDateTime.now(ZoneId.systemDefault()) + "_" + ".html", true);
+        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_07_Test_PasswordLengthMessages.class.getName() + "_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
         extentLogger = extentReports.startTest("Validate different Password Length Related Messages");
         extentLogger.log(LogStatus.PASS, "URL opened successfully");
 

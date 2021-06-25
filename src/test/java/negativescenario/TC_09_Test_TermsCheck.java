@@ -13,7 +13,9 @@ import org.testng.annotations.Test;
 import pagemodels.SignUp;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 
 /*This test is for checking if Terms and Condition Validations is present*/
@@ -33,7 +35,7 @@ public class TC_09_Test_TermsCheck {
         Base.initialise(Base.getBrowser());
         signUp = new SignUp();
         log.info("Fetching URL");
-        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_09_Test_TermsCheck.class.getName() + "_" + LocalDateTime.now(ZoneId.systemDefault()) + "_" + ".html", true);
+        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_09_Test_TermsCheck.class.getName() + "_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
         extentLogger = extentReports.startTest("Validate Terms and Conditions Check");
         Base.getURL(Base.getURL());
         extentLogger.log(LogStatus.PASS, "URL opened successfully");

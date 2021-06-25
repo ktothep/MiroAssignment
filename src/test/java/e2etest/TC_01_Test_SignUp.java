@@ -18,7 +18,9 @@ import pagemodels.SuccessfulRegistration;
 import utils.DataMethods;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 
 /*This test is for checking if user is able to signup.*/
@@ -39,7 +41,7 @@ public class TC_01_Test_SignUp {
         Base.initialise(Base.getBrowser());
         signUp = new SignUp();
         successfulRegistration = new SuccessfulRegistration();
-        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_01_Test_SignUp.class.getName() + "_" + LocalDateTime.now(ZoneId.systemDefault()) + "_" + ".html", true);
+        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_01_Test_SignUp.class.getName()+"_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
         extentLogger = extentReports.startTest("Verify if user is able to Sign Up");
 
     }

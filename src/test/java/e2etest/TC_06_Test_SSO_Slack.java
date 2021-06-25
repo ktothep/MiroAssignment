@@ -14,7 +14,9 @@ import pagemodels.SignUp;
 import pagemodels.SuccessfulRegistration;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 
 /*This test is for checking if user is able to SSO using Slack.*/
@@ -36,7 +38,7 @@ public class TC_06_Test_SSO_Slack {
         signUp = new SignUp();
         successfulRegistration = new SuccessfulRegistration();
         log.info("Fetching URL");
-        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_06_Test_SSO_Slack.class.getName() + "_" + LocalDateTime.now(ZoneId.systemDefault()) + "_" + ".html", true);
+        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_06_Test_SSO_Slack.class.getName() + "_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
         extentLogger = extentReports.startTest("Verify if user is able to SSO using Slack");
         Base.getURL(Base.getURL());
         extentLogger.log(LogStatus.PASS, "URL opened successfully");
