@@ -65,10 +65,10 @@ public class SignUp extends Base {
     @FindBy(xpath = ".//a[contains(@class,'signup__btn')]")
     WebElement signIn;
 
-    @FindBy(xpath = ".//div[contains(@class,'signup__error')]")
+    @FindBy(xpath = ".//div[@data-autotest-id='please-enter-your-password-1']")
     WebElement emptyPassword;
 
-    @FindBy(xpath = ".//div[contains(@class,'signup__input-hint-text')]")
+    @FindBy(xpath = ".//div[@id='password-hint']")
     WebElement smallPassword;
 
     @FindBy(xpath = ".//*[contains(@data-autotest-id,'mr-error-signup')]")
@@ -235,25 +235,12 @@ public class SignUp extends Base {
         return webDriver.getTitle();
     }
 
-    /*
-    Method for checking validation when password field is empty
-     */
-    public String passwordEmptyValidation() {
-        this.scrollBy(email);
-        name.clear();
-        email.clear();
-        password.clear();
-        submit.click();
-        helperMethods.waitForWebElement(emptyPassword, 30);
-        return emptyPassword.getText();
-    }
+
 
     /*
    Method for validating if error is shown when password of less than 8 characters is used
      */
     public String passwordLengthValidation(String username, String passwordValue, String emailValue) {
-        name.clear();
-        email.clear();
         name.sendKeys(username);
         email.sendKeys(emailValue);
         this.scrollBy(submit);
