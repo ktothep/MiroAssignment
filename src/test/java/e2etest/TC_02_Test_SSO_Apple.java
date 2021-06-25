@@ -54,7 +54,8 @@ public class TC_02_Test_SSO_Apple {
     public void verifyTitle() {
         try {
             log.info("Clicking on Apple SSO button and validating title of the newly open Page ");
-            Assert.assertEquals(signUp.ssoApple().replace(String.valueOf((char) 160), " "), "Sign in with Apple ID");
+            String titleApple=signUp.ssoApple();
+            Assert.assertEquals(titleApple.replace(String.valueOf((char) 160), " "), "Sign in with Apple ID");
             log.info("Title of the Page: " + Base.getTitle());
             extentLogger.log(LogStatus.PASS, "Title of the Page is validated : " + Base.getTitle());
 

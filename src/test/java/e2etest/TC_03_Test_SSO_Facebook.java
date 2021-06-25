@@ -53,8 +53,8 @@ public class TC_03_Test_SSO_Facebook {
     public void verifyTitle() {
         try {
             log.info("Clicking on Facebook SSO button and validating title of the newly open Page");
-
-            if (signUp.ssoFacebook().contains("Facebook")) {
+             String facebookTitle=signUp.ssoFacebook();
+            if (facebookTitle.contains("Facebook")) {
                 log.info("Title of the Page: " + Base.getTitle());
                 extentLogger.log(LogStatus.PASS, "Title verified succssfully: " + Base.getTitle());
                 Assert.assertTrue(true);
