@@ -17,5 +17,10 @@
             <class name="negativescenario.TC_09_Test_TermsCheck"/>
         </classes>
     </test>
+    <test name="Validate Repeated user Sign Up">
+        <classes>
+            <class name="negativescenario.TC_13_Test_UseralreadyRegistered"/>
+        </classes>
+    </test>
 </suite>
 

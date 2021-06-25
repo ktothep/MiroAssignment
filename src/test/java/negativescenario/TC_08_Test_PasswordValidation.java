@@ -5,13 +5,11 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import initilaiser.Base;
+import listeners.TestListener;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pagemodels.SignUp;
 import utils.DataMethods;
 
@@ -23,12 +21,13 @@ import java.time.ZoneId;
 import java.util.concurrent.TimeUnit;
 
 /*This test is for checking if password validation is present or not.*/
-
+@Listeners(TestListener.class)
 public class TC_08_Test_PasswordValidation extends Base {
     public static SignUp signUp;
     static ExtentReports extentReports;
     static ExtentTest extentLogger;
     Logger log = Logger.getLogger(TC_08_Test_PasswordValidation.class.getName());
+    TestListener testListener;
 
     /*Initialise DataProvider and get the Data*/
     @BeforeSuite
@@ -41,6 +40,7 @@ public class TC_08_Test_PasswordValidation extends Base {
 
     @BeforeClass()
     public void classSetup() throws IOException {
+        testListener=new TestListener();
         log.info("Initializing Chrome Driver");
         Base.initialise(Base.getBrowser());
         signUp = new SignUp();
@@ -93,6 +93,12 @@ public class TC_08_Test_PasswordValidation extends Base {
         }
     }
 
+
+    @AfterMethod
+    public void addScreenshot()
+    {
+        extentLogger.log(LogStatus.FAIL,"Screenshot of failed Step",extentLogger.addScreenCapture(testListener.getImagePath()));
+    }
     /*Perform Clean Up Activity after Test*/
 
     @AfterClass

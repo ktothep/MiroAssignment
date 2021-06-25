@@ -4,12 +4,11 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import initilaiser.Base;
+import listeners.TestListener;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pagemodels.SignUp;
 import pagemodels.SuccessfulRegistration;
 
@@ -20,7 +19,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 
 /*This test is for checking if user is able to SSO using Facebook.*/
-
+@Listeners(TestListener.class)
 public class TC_03_Test_SSO_Facebook {
 
     public static SignUp signUp;
@@ -28,12 +27,14 @@ public class TC_03_Test_SSO_Facebook {
     static ExtentReports extentReports;
     static ExtentTest extentLogger;
     Logger log = Logger.getLogger(TC_03_Test_SSO_Facebook.class.getName());
+    TestListener testListener;
 
 
     /*Perform initialisation Activity of Webdriver,Logger,Reporter*/
 
     @BeforeClass()
     public void classSetup() throws IOException {
+        testListener=new TestListener();
         log.info("Initializing Chrome Driver");
         Base.initialise(Base.getBrowser());
         signUp = new SignUp();
@@ -74,7 +75,11 @@ public class TC_03_Test_SSO_Facebook {
         }
     }
 
-
+    @AfterMethod
+    public void addScreenshot()
+    {
+        extentLogger.log(LogStatus.FAIL,"Screenshot of failed Step",extentLogger.addScreenCapture(testListener.getImagePath()));
+    }
     /*Perform Clean Up Activity after Test*/
 
     @AfterClass

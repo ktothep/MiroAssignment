@@ -4,12 +4,11 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import initilaiser.Base;
+import listeners.TestListener;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pagemodels.HomePage;
 import pagemodels.SignUp;
 
@@ -21,21 +20,21 @@ import java.time.ZoneId;
 import java.util.concurrent.TimeUnit;
 
 /*This test is for checking if User is redirected to Home Page on clicking Miro Page*/
-
-
+@Listeners(TestListener.class)
 public class TC_10_Test_ValidateHomeLink extends Base {
     public static SignUp signUp;
     public static HomePage homePage;
     static ExtentReports extentReports;
     static ExtentTest extentLogger;
     Logger log = Logger.getLogger(TC_10_Test_ValidateHomeLink.class.getName());
-
+    TestListener testListener;
 
 
     /*Perform initialisation Activity of Webdriver,Logger,Reporter*/
 
     @BeforeClass()
     public void setUp() throws IOException {
+        testListener=new TestListener();
         log.info("Initializing Chrome Driver");
         Base.initialise(Base.getBrowser());
         signUp = new SignUp();
@@ -74,7 +73,11 @@ public class TC_10_Test_ValidateHomeLink extends Base {
         }
 
     }
-
+    @AfterMethod
+    public void addScreenshot()
+    {
+        extentLogger.log(LogStatus.FAIL,"Screenshot of failed Step",extentLogger.addScreenCapture(testListener.getImagePath()));
+    }
     /*Perform Clean Up Activity after Test*/
     @AfterClass
     public void cleanUp() {

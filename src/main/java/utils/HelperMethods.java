@@ -19,10 +19,11 @@ import java.io.IOException;
 public class HelperMethods extends Base {
 
     /*Method for taking screenshots*/
-    public void takeScreenshot(String fileName) throws IOException {
+    public String takeScreenshot(String fileName) throws IOException {
         File src = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-        File dest = new File(System.getProperty("user.dir") + "/screeshots/" + fileName + ".png");
+        File dest = new File(System.getProperty("user.dir") + "/result/screenshots/" + fileName + ".png");
         FileUtils.copyFile(src, dest);
+        return dest.getAbsolutePath();
     }
 
     /*

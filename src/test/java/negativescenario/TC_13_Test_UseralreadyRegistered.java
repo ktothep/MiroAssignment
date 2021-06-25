@@ -1,10 +1,10 @@
-package e2etest;
-
+package negativescenario;
 
 import com.codoid.products.exception.FilloException;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import e2etest.TC_01_Test_SignUp;
 import initilaiser.Base;
 import listeners.TestListener;
 import org.apache.log4j.Logger;
@@ -17,22 +17,15 @@ import utils.DataMethods;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
-
-/*This test is for checking if user is able to signup.*/
-
 @Listeners(TestListener.class)
-public class TC_01_Test_SignUp {
-
+public class TC_13_Test_UseralreadyRegistered {
     public static SignUp signUp;
     public static SuccessfulRegistration successfulRegistration;
     static ExtentReports extentReports;
     static ExtentTest extentLogger;
-    TestListener testListener;
     Logger log = Logger.getLogger(TC_01_Test_SignUp.class.getName());
-
+    TestListener testListener;
 
     /*Perform initialisation Activity of Webdriver,Logger,Reporter*/
     @BeforeClass()
@@ -42,8 +35,8 @@ public class TC_01_Test_SignUp {
         Base.initialise(Base.getBrowser());
         signUp = new SignUp();
         successfulRegistration = new SuccessfulRegistration();
-        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_01_Test_SignUp.class.getName()+"_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
-        extentLogger = extentReports.startTest("Verify if user is able to Sign Up");
+        extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_13_Test_UseralreadyRegistered.class.getName()+"_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
+        extentLogger = extentReports.startTest("Verify Error Message if Email is already registered");
 
     }
 
@@ -51,11 +44,11 @@ public class TC_01_Test_SignUp {
     @BeforeSuite
     public void initialiseDataprovider() throws FilloException {
         DataMethods dataMethods = new DataMethods();
-        dataMethods.fetchData("Sheet1", "TC_1", new String[]{"Testcase", "Username", "Password", "Email"});
+        dataMethods.fetchData("Sheet1", "TC_13", new String[]{"Testcase", "Username", "Password", "Email"});
     }
 
     @Test(dataProvider = "dataProvider", dataProviderClass = DataMethods.class)
-    public void signUp(String userName, String password, String eMail) throws FilloException {
+    public void repeatedSignUp(String userName, String password, String eMail) throws FilloException {
 
         try {
             Base.getURL(Base.getURL());
@@ -69,25 +62,21 @@ public class TC_01_Test_SignUp {
             log.info("Entering Username: " + userName);
             log.info("Entering Email: " + eMail);
             log.info("Entering Password: " + password);
-            signUp.enterCredentials(userName, password, eMail);
+            log.info("Validating the error message");
+            String message=signUp.repeatedUser(userName,password,eMail);
+            Assert.assertEquals(message,"Sorry, this email is already registered");
             extentLogger.log(LogStatus.PASS, "Credentials entered successfully username: " + userName + " ,Password: " + password + " ,eMail: " + eMail);
-            log.info("Validating if Sign in Successful Page is loaded");
-            Assert.assertTrue(successfulRegistration.validateRegistration());
-            extentLogger.log(LogStatus.PASS, "Registration page is loaded succesfully");
-            log.info("Validating the Email used for Sign-up is properly captured and correct");
-            Assert.assertEquals(successfulRegistration.getEmail(), eMail);
-            extentLogger.log(LogStatus.PASS, "Validating the email is captured correctly or not");
+            extentLogger.log(LogStatus.PASS, "Message validated successfullyL: "+message);
+            log.info("Message: "+message);
+
 
         } catch (TimeoutException timeoutException) {
             log.error("Element is not present.Check for change in xpath or if Page is loaded " + timeoutException.getLocalizedMessage());
             extentLogger.log(LogStatus.FAIL, "Element is missing " + timeoutException.getLocalizedMessage());
-
             Assert.fail("Test has failed");
-
         } catch (Exception exception) {
             log.error("Something went wrong.Please check code. " + exception.getLocalizedMessage());
             extentLogger.log(LogStatus.FAIL, "Error Occurred" + exception.getLocalizedMessage());
-
             Assert.fail("Test has failed");
         }
 
@@ -98,7 +87,6 @@ public class TC_01_Test_SignUp {
     {
         extentLogger.log(LogStatus.FAIL,"Screenshot of failed Step",extentLogger.addScreenCapture(testListener.getImagePath()));
     }
-
     /*Perform Clean Up Activity after Test*/
     @AfterClass
     public void cleanUp() {

@@ -73,6 +73,8 @@ public class SignUp extends Base {
     @FindBy(xpath = ".//*[contains(@data-autotest-id,'mr-error-signup')]")
     WebElement termsError;
 
+    @FindBy(xpath =".//*[contains(@data-autotest-id,'mr-error-email')]")
+    WebElement emailNotUnique;
     /*
     Constructor for initialising the WebElements through PageFactory
     */
@@ -278,5 +280,13 @@ public class SignUp extends Base {
         return passwordValidationText;
     }
 
-
+  /*
+  Method for Repeated User Signup
+   */
+    public String repeatedUser(String usernameValue, String passwordValue, String emailValue)
+    {
+        this.enterCredentials(usernameValue,passwordValue,emailValue);
+        helperMethods.waitForWebElement(emailNotUnique, 30);
+        return emailNotUnique.getText()  ;
+    }
 }
