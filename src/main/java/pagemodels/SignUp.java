@@ -70,7 +70,7 @@ public class SignUp extends Base {
     @FindBy(xpath = ".//div[contains(@class,'signup__input-hint-text')]")
     WebElement smallPassword;
 
-    @FindBy(xpath = ".//div[@class='signup__error-item']")
+    @FindBy(xpath = ".//*[contains(@data-autotest-id,'mr-error-signup')]")
     WebElement termsError;
 
     /*
@@ -106,8 +106,8 @@ public class SignUp extends Base {
         name.sendKeys(usernameValue);
         email.sendKeys(emailValue);
         password.sendKeys(passwordValue);
-        this.scrollBy(submit);
         termsCheck.click();
+        this.scrollBy(submit);
         subscribeCheck.click();
         submit.click();
     }
@@ -243,8 +243,10 @@ public class SignUp extends Base {
         name.sendKeys("Karan Prinja");
         email.sendKeys("k1234@hotmail.com");
         password.sendKeys("termsnotmet");
+        this.scrollBy(submit);
         submit.click();
         helperMethods.waitForWebElement(termsError, 30);
+        this.scrollBy(termsError);
         return termsError.getText();
     }
 
