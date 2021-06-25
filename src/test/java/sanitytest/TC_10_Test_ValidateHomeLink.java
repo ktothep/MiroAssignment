@@ -8,6 +8,7 @@ import listeners.TestListener;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pagemodels.HomePage;
 import pagemodels.SignUp;
@@ -74,9 +75,10 @@ public class TC_10_Test_ValidateHomeLink extends Base {
 
     }
     @AfterMethod
-    public void addScreenshot()
-    {
-        extentLogger.log(LogStatus.FAIL,"Screenshot of failed Step",extentLogger.addScreenCapture(testListener.getImagePath()));
+    public void addScreenshot(ITestResult result) {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            extentLogger.log(LogStatus.FAIL, "Screenshot of failed Step", extentLogger.addScreenCapture(testListener.getImagePath()));
+        }
     }
     /*Perform Clean Up Activity after Test*/
     @AfterClass
