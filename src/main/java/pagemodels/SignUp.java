@@ -4,6 +4,7 @@ import initilaiser.Base;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.HelperMethods;
@@ -40,19 +41,19 @@ public class SignUp extends Base {
     @FindBy(xpath = ".//label[@for='tos-signup-subscribe']")
     WebElement ssoSubscribeCheck;
 
-    @FindBy(css = "div#a11y-signup-with-google")
+    @FindBy(xpath = ".//div[@data-soc='google']")
     WebElement signupGoogle;
 
-    @FindBy(xpath = ".//img[contains(@alt,'Slack')]")
+    @FindBy(xpath = "..//div[@data-soc='slack']")
     WebElement signupSlack;
 
-    @FindBy(xpath = ".//img[contains(@alt,'Office')]")
+    @FindBy(xpath = ".//div[@data-soc='office365']")
     WebElement signupOutlook;
 
-    @FindBy(xpath = ".//img[contains(@alt,'Apple')]")
+    @FindBy(xpath = ".//div[@id='apple-auth']")
     WebElement signupApple;
 
-    @FindBy(xpath = ".//img[contains(@alt,'Facebook')]")
+    @FindBy(xpath = ".//div[@data-soc='facebook']")
     WebElement signupFacebook;
 
     @FindBy(xpath = ".//div[contains(@class,'socialtos__btn js')]")
@@ -134,6 +135,9 @@ public class SignUp extends Base {
     Method for checking SSO functionality using Slack
      */
     public String ssoSlack() {
+        while (!helperMethods.waitForPageToLoad()) {
+            helperMethods.waitForPageToLoad();
+        }
         this.scrollBy(signupSlack);
         helperMethods.waitForWebElementToBeInteractable(signupSlack,30);
         signupSlack.click();
@@ -242,6 +246,7 @@ public class SignUp extends Base {
         email.sendKeys(emailValue);
         this.scrollBy(submit);
         password.sendKeys(passwordValue);
+        termsCheck.click();
         submit.click();
         helperMethods.waitForWebElement(smallPassword, 30);
         return smallPassword.getText();

@@ -66,5 +66,7 @@ I am making use of Mac so the webdriver executeable i have does not has any .exe
 If you are a windows users please place the chromedriver.exe in resources->driver folder and change the 
 filename in Base.class.
 
+If some Test Cases fail please re run the individual test case sperately
+
 
 
