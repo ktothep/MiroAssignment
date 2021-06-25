@@ -61,5 +61,9 @@ In your **@BeforeSuite** annotation method then call the DataMethods as below:
             
  Open the poject in your IDE and execute each test case individually or through the XML.           
                
-  
+I am making use of Mac so the webdriver executeable i have does not has any .exe extension.
+If you are a windows users please place the chromedriver.exe in resources->driver folder and change the 
+filename in Base.class.
+
+
 
