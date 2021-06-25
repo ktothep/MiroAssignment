@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Miro Suite End to End">
+    <test name="Validate Sign up Feature">
+        <classes>
+            <class name="e2etest.TC_01_Test_SignUp"/>
+        </classes>
+    </test>
+    <test name="Validate SSO Sign up using Apple ID">
+        <classes>
+            <class name="e2etest.TC_02_Test_SSO_Apple"/>
+        </classes>
+    </test>
+    <test name="Validate SSO Sign up using Facebook">
+        <classes>
+            <class name="e2etest.TC_03_Test_SSO_Facebook"/>
+        </classes>
+    </test>
+    <test name="Validate SSO Sign up using Gmail">
+        <classes>
+            <class name="e2etest.TC_04_Test_SSO_Google"/>
+        </classes>
+    </test>
+    <test name="Validate SSO Sign up using Office">
+        <classes>
+            <class name="e2etest.TC_05_Test_SSO_Office"/>
+        </classes>
+    </test>
+    <test name="Validate SSO Sign  up using Slack">
+        <classes>
+            <class name="e2etest.TC_06_Test_SSO_Slack"/>
+        </classes>
+    </test>
+</suite>
+

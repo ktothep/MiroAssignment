@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Miro Suite Negative Suite">
+    <test name="Validate different Password Length Message">
+        <classes>
+            <class name="negativescenario.TC_07_Test_PasswordLengthMessages"/>
+        </classes>
+    </test>
+
+    <test name="Validate Password Validation">
+        <classes>
+            <class name="negativescenario.TC_08_Test_PasswordValidation"/>
+        </classes>
+    </test>
+    <test name="Validate Terms and Condition validation">
+        <classes>
+            <class name="negativescenario.TC_09_Test_TermsCheck"/>
+        </classes>
+    </test>
+</suite>
+

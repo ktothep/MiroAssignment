@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Miro Suite Sanity" parallel="true" thread-count="3">
+    <test name="Validate that Home Link is working on Sign Up Page">
+        <classes>
+            <class name="sanitytest.TC_10_Test_ValidateHomeLink"/>
+        </classes>
+    </test>
+    <test name="Validate that Sign in Link is working on Sign Up Page">
+        <classes>
+            <class name="sanitytest.TC_11_Test_ValidateSignIn"/>
+        </classes>
+    </test>
+    <test name="Validate that all elements on Sign Up Page are displayed">
+        <classes>
+            <class name="sanitytest.TC_12_Test_ValidateSignUpPage"/>
+        </classes>
+    </test>
+</suite> <!-- Suite -->
