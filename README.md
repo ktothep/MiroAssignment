@@ -17,7 +17,7 @@ This is a Test Automation Framework making use of TestNG and Selenium along with
     iii.**utils**      --> This folder has the helper classes for Data fetching and other commonly used method.For example Explicit wait 
 
  2.  **test**  --> This folder has all the test cases.The test cases are further divided in sanity,end to end and negative scenarios.
-
+     **Listener** --> This has the listener method for the test cases 
 **Resources** --> This folder is present inside the main folder.Below are the files it has
 
    1. **driver**          -->  This folder has drivers for all the browsers we are making use of.If you want to make use of new browser for testing.Place the                                      browser driver in this folder and make changes to the Base.Class switch case statement.
@@ -60,6 +60,12 @@ In your **@BeforeSuite** annotation method then call the DataMethods as below:
             **OR**
             
  Open the poject in your IDE and execute each test case individually or through the XML.           
+
+  **Continuous Integration/Deployment**
+
+  Instead of creating a pipeline for this project.We can create a freestyle project.Pass the Git repository
+  path in it.Set build trigger for periodic or when changes are push by configuring a webhook in git.Then we can
+  set the build step as 'mvn clean test'.
 
 #NOTE               
 I am making use of Mac so the webdriver executeable i have does not has any .exe extension.
