@@ -74,5 +74,8 @@ filename in Base.class.
 
 If some Test Cases fail please re run the individual test case sperately
 
+Please enter fresh data in the Test-Data excel.In some of the test cases i have hard-coded the testdata
+But they can be insterted through excel.I just wanted to shown different ways of inserting data.
+
 
 
