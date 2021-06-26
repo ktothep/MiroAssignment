@@ -59,7 +59,7 @@ public class TC_08_Test_PasswordValidation extends Base {
 
 
     @Test(dataProvider = "dataProvider", dataProviderClass = DataMethods.class)
-    public void passwordTestLessThan8(String userName, String password, String eMail) {
+    public void passwordTestLessChracters(String userName, String password, String eMail) {
         try {
             log.info("Validating if message is shown if Password field lenght is less than 8 characters");
             String passwordLengthMessage = signUp.passwordLengthValidation(userName, password, eMail);
