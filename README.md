@@ -2,6 +2,10 @@
 
 This is a Test Automation Framework making use of TestNG and Selenium along with Maven for dependency management and execution.Reporting is handled by Extent Reports and logging by log4j
 
+**Pre-Requisite**
+  1.JAVA 8 or higher
+  2.Maven
+
 **Directory Structure:**
 
 **Results Folder **--> This folder has all the test results that are generated after execution of the Test Cases.
@@ -67,15 +71,48 @@ In your **@BeforeSuite** annotation method then call the DataMethods as below:
   path in it.Set build trigger for periodic or when changes are push by configuring a webhook in git.Then we can
   set the build step as 'mvn clean test'.
 
+
+  **Test Cases**
+    
+  1.*TC_01_Test_SignUp*: This test case is for Sign-in Up User.To check successful signup.
+
+  2.*TC_02_Test_SSO_Apple*: This test case is for checking if SSO to Apple opens Apple sign in page.
+
+  3.*TC_03_Test_SSO_Facebook*: This test case is for checking if SSO to Facebook opens Facebook sign in page. 
+
+  4.*TC_04_Test_SSO_Google*: This test case is for checking if SSO to GMAIL opens Gmail login page.
+
+  5.*TC_05_Test_SSO_Office*: This test case is for checking if SSO to Office365 opens Outlook sign in page.
+
+  6.*TC_06_Test_SSO_Slack*: This test case is for checking if SSO to Slack opens Slack SSO page.
+
+  7.*TC_07_Test_PasswordLengthMessages*: This test case validates different messages shown for passwords of varied length.
+
+  8.*TC_08_Test_PasswordValidation*: This test case is for validation of message when password length ios less than 8 characters.
+
+  9.*TC_09_Test_TermsCheck*: This test case validates error message when Terms Check box is left unchecked.
+
+  10.*TC_10_Test_ValidateHomeLink*: This test case validates if clicking on Miro logo redirects user to HomePage.
+
+  11.*TC_11_Test_ValidateSignIn*: This test case validates if user is redirected to Sign in Page on clicking sign in Page.
+
+  12.*TC_12_Test_ValidateSignUpPage*: This test case validates if Sign Up Page is coming correctly.
+
+  13.*TC_13_Test_UseralreadyRegistered*: This test case validates the scenario if the user is already registerd and tries to register again.
+
+
+
+
 #NOTE               
 I am making use of Mac so the webdriver executeable i have does not has any .exe extension.
 If you are a windows users please place the chromedriver.exe in resources->driver folder and change the 
 filename in Base.class.
 
-If some Test Cases fail please re run the individual test case sperately
+If some Test Cases fail please re-run the individual test case separately
 
-Please enter fresh data in the Test-Data excel.In some of the test cases i have hard-coded the testdata
-But they can be insterted through excel.I just wanted to shown different ways of inserting data.
+Please enter fresh data in the Test-Data excel for TC_1.For TC_13 enter credentials of user already registered or keep it as it is as i have added my credentials
+In some test cases I have hard-coded the test-data,but they can be inserted through excel.I just wanted to shown different ways of inserting data.
 
-
+In SSO Test cases I have used Thread.sleep.I know this is not a valid method.But i did not
+wanted to access elements of third party pages and increase POM count.
 

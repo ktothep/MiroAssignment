@@ -151,7 +151,7 @@ public class SignUp extends Base {
             helperMethods.waitForPageToLoad();
         }
         //Since we are navigating to third party adding thread.sleep
-        Thread.sleep(5000);
+        Thread.sleep(7000);
         return webDriver.getTitle();
     }
 
@@ -170,7 +170,7 @@ public class SignUp extends Base {
             helperMethods.waitForPageToLoad();
         }
         //Since we are navigating to third party adding thread.sleep
-        Thread.sleep(5000);
+        Thread.sleep(7000);
         return webDriver.getTitle();
     }
 
@@ -188,7 +188,7 @@ public class SignUp extends Base {
             helperMethods.waitForPageToLoad();
         }
         //Since we are navigating to third party adding thread.sleep
-        Thread.sleep(5000);
+        Thread.sleep(7000);
         return webDriver.getTitle();
     }
 
@@ -207,7 +207,7 @@ public class SignUp extends Base {
             helperMethods.waitForPageToLoad();
         }
         //Since we are navigating to third party adding thread.sleep
-        Thread.sleep(5000);
+        Thread.sleep(7000);
         return webDriver.getTitle();
     }
 
@@ -241,12 +241,12 @@ public class SignUp extends Base {
    Method for validating if error is shown when password of less than 8 characters is used
      */
     public String passwordLengthValidation(String username, String passwordValue, String emailValue) {
+
         name.sendKeys(username);
         email.sendKeys(emailValue);
-        this.scrollBy(submit);
         password.sendKeys(passwordValue);
+        this.scrollBy(submit);
         termsCheck.click();
-        submit.click();
         helperMethods.waitForWebElement(smallPassword, 30);
         return smallPassword.getText();
     }

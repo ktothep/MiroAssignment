@@ -30,7 +30,7 @@ public class TC_13_Test_UseralreadyRegistered {
 
     /*Perform initialisation Activity of Webdriver,Logger,Reporter*/
     @BeforeClass()
-    public void classSetup() throws IOException {
+    public void classSetup() throws IOException, FilloException {
         testListener=new TestListener();
         log.info("Initilaising Chrome Driver");
         Base.initialise(Base.getBrowser());
@@ -38,15 +38,12 @@ public class TC_13_Test_UseralreadyRegistered {
         successfulRegistration = new SuccessfulRegistration();
         extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_13_Test_UseralreadyRegistered.class.getName()+"_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
         extentLogger = extentReports.startTest("Verify Error Message if Email is already registered");
-
-    }
-
-    /*Initialise DataProvider and get the Data*/
-    @BeforeSuite
-    public void initialiseDataprovider() throws FilloException {
         DataMethods dataMethods = new DataMethods();
         dataMethods.fetchData("Sheet1", "TC_13", new String[]{"Testcase", "Username", "Password", "Email"});
+
     }
+
+
 
     @Test(dataProvider = "dataProvider", dataProviderClass = DataMethods.class)
     public void repeatedSignUp(String userName, String password, String eMail) throws FilloException {
@@ -67,6 +64,7 @@ public class TC_13_Test_UseralreadyRegistered {
             extentLogger.log(LogStatus.PASS, "Credentials entered successfully username: " + userName + " ,Password: " + password + " ,eMail: " + eMail);
             extentLogger.log(LogStatus.PASS, "Message validated successfullyL: "+message);
             log.info("Message: "+message);
+
 
 
         } catch (TimeoutException timeoutException) {

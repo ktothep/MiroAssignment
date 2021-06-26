@@ -30,17 +30,11 @@ public class TC_08_Test_PasswordValidation extends Base {
     Logger log = Logger.getLogger(TC_08_Test_PasswordValidation.class.getName());
     TestListener testListener;
 
-    /*Initialise DataProvider and get the Data*/
-    @BeforeSuite
-    public void initialiseDataprovider() throws FilloException {
-        DataMethods dataMethods = new DataMethods();
-        dataMethods.fetchData("Sheet1", "TC_7", new String[]{"Testcase", "Username", "Password", "Email"});
-    }
 
     /*Perform initialisation Activity of Webdriver,Logger,Reporter*/
 
     @BeforeClass()
-    public void classSetup() throws IOException {
+    public void classSetup() throws IOException, FilloException {
         testListener=new TestListener();
         log.info("Initializing Chrome Driver");
         Base.initialise(Base.getBrowser());
@@ -53,6 +47,9 @@ public class TC_08_Test_PasswordValidation extends Base {
         Base.maximise();
 
         webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        DataMethods dataMethods = new DataMethods();
+        dataMethods.fetchData("Sheet1", "TC_7", new String[]{"Testcase", "Username", "Password", "Email"});
+
 
     }
 

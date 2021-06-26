@@ -37,7 +37,7 @@ public class TC_01_Test_SignUp {
 
     /*Perform initialisation Activity of Webdriver,Logger,Reporter*/
     @BeforeClass()
-    public void classSetup() throws IOException {
+    public void classSetup() throws IOException, FilloException {
         testListener=new TestListener();
         log.info("Initilaising Chrome Driver");
         Base.initialise(Base.getBrowser());
@@ -45,15 +45,12 @@ public class TC_01_Test_SignUp {
         successfulRegistration = new SuccessfulRegistration();
         extentReports = new ExtentReports(System.getProperty("user.dir") + "/result/" + TC_01_Test_SignUp.class.getName()+"_"+ LocalDate.now() +"_"+ LocalTime.now().toString().replace(":","-") +  ".html", true);
         extentLogger = extentReports.startTest("Verify if user is able to Sign Up");
-
-    }
-
-    /*Initialise DataProvider and get the Data*/
-    @BeforeSuite
-    public void initialiseDataprovider() throws FilloException {
         DataMethods dataMethods = new DataMethods();
         dataMethods.fetchData("Sheet1", "TC_1", new String[]{"Testcase", "Username", "Password", "Email"});
+
     }
+
+
 
     @Test(dataProvider = "dataProvider", dataProviderClass = DataMethods.class)
     public void signUp(String userName, String password, String eMail) throws FilloException {
