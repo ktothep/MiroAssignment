@@ -104,11 +104,10 @@ In your **@BeforeSuite** annotation method then call the DataMethods as below:
 
 
 #NOTE               
-I am making use of Mac so the webdriver executeable i have does not has any .exe extension.
-If you are a windows users please place the chromedriver.exe in resources->driver folder and change the 
-filename in Base.class.
+I am using Mac so the chrome driver does not has any .exe extension.
+If you are a windows users please place the chromedriver.exe in resources->driver folder and change the filename in Base.class.
 
-If some Test Cases fail please re-run the individual test case separately
+If some Test Cases fail please re-run the individual test case separately.I have not implemented IRetry Analyser for simplicity.
 
 Please enter fresh data in the Test-Data excel for TC_1.For TC_13 enter credentials of user already registered or keep it as it is as i have added my credentials
 In some test cases I have hard-coded the test-data,but they can be inserted through excel.I just wanted to shown different ways of inserting data.
